@@ -36,6 +36,9 @@ public class MainActivity extends AppCompatActivity {
 
     private ArrayList<String> ListData= new ArrayList<>(Arrays.asList(mountainNames));
 
+    private ArrayList<Scorepoint> pointing = new ArrayList<>();
+    private ArrayAdapter<String> adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,7 +51,10 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setLogo(R.drawable.ic_action_name);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
 
-        ArrayAdapter<String> adapter=new ArrayAdapter<String>(this,R.layout.list_item_text,R.id.list_item_text,ListData);
+        ArrayAdapter<String> adapter=new ArrayAdapter<String>(this,
+                R.layout.list_item_text,
+                R.id.list_item_text,ListData);
+
         ListView my_listview=(ListView) findViewById(R.id.my_listview);
         my_listview.setAdapter(adapter);
 
@@ -98,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
 
             try {
                 // Construct the URL for the Internet service
-                URL url = new URL("http://wwwlab.iit.his.se/a18petha/Andriod_Studio/Project/Jsontest.json");
+                URL url = new URL("http://wwwlab.iit.his.se/a18petha/Andriod_Studio/Project/results.php");
 
                 // Create the request to the PHP-service, and open the connection
                 urlConnection = (HttpURLConnection) url.openConnection();
@@ -153,6 +159,26 @@ public class MainActivity extends AppCompatActivity {
 
             Log.d("PetersDebug", "Debug start");
             Log.d("PetersDebug", o);
+
+            try {
+
+                JSONArray json1 = new JSONArray(o);
+
+                for (int i = 0; i < json1.length(); i++) {
+                    adapter.add(json1.getJSONObject(i).getString("name"));
+                    pointing.add(new Scorepoint(
+                            json1.getJSONObject(i).getString("league")
+                    ));
+
+                }
+
+                Log.d("PetersDebug", json1.toString());
+                Log.d("PetersDebug", json1.getJSONObject(0).getString("ID"));
+
+            } catch (JSONException e) {
+                Log.e("brom", "E:" + e.getMessage());
+            }
+
         }
     }
 
