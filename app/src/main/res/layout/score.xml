@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorAccent"
+    tools:context="com.example.project.Scoredetails">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="40dp"
+        android:background="?attr/colorPrimary"
+        tools:layout_editor_absoluteX="40dp"
+        tools:layout_editor_absoluteY="40dp">
+
+        <TextView
+            android:id="@+id/world1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Hello world1"
+            android:textColor="#ffffff"
+            android:textSize="20dp"
+            tools:layout_editor_absoluteX="110dp"
+            tools:layout_editor_absoluteY="257dp" />
+
+        <TextView
+            android:id="@+id/world7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hello world7"
+            android:textColor="#ffffff"
+            android:textSize="20dp"
+            tools:layout_editor_absoluteX="110dp"
+            tools:layout_editor_absoluteY="257dp" />
+
+        <TextView
+            android:id="@+id/world6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hello world6"
+            android:textColor="#ffffff"
+            android:textSize="20dp"
+            tools:layout_editor_absoluteX="110dp"
+            tools:layout_editor_absoluteY="257dp" />
+
+        <TextView
+            android:id="@+id/world5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hello world5"
+            android:textColor="#ffffff"
+            android:textSize="20dp"
+            tools:layout_editor_absoluteX="110dp"
+            tools:layout_editor_absoluteY="257dp" />
+
+        <TextView
+            android:id="@+id/world4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hello world4"
+            android:textColor="#ffffff"
+            android:textSize="20dp"
+            tools:layout_editor_absoluteX="110dp"
+            tools:layout_editor_absoluteY="257dp" />
+
+        <TextView
+            android:id="@+id/world3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hello world3"
+            android:textColor="#ffffff"
+            android:textSize="20dp"
+            tools:layout_editor_absoluteX="110dp"
+            tools:layout_editor_absoluteY="257dp" />
+
+        <TextView
+            android:id="@+id/world2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hello world2"
+            android:textColor="#ffffff"
+            android:textSize="20dp"
+            tools:layout_editor_absoluteX="110dp"
+            tools:layout_editor_absoluteY="257dp" />
+
+        <TextView
+            android:id="@+id/world"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hello world"
+            android:textColor="#ffffff"
+            android:textSize="20dp"
+            tools:layout_editor_absoluteX="110dp"
+            tools:layout_editor_absoluteY="257dp" />
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>
