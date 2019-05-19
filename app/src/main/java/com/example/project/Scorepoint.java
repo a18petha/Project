@@ -1,36 +1,45 @@
 package com.example.project;
 
+import android.location.Location;
+
 public class Scorepoint {
     private String location;
-    private String id;
+    private String ID;
     private String league;
     private String lagett;
-    private String lagtvå;
+    private String lagtvo;
     private String date;
+    private String imageone;
+    private String imagetwo;
     private int lagettpoints;
-    private int lagtvåpoints;
+    private int lagtvopoints;
 
-    public Scorepoint (String inId, String inLeague, String inLagett, String inLagtvå, int inLagettpoints,
-                  int inlagtvåpoints, String inLocation, String inDate) {
+
+    public Scorepoint(String inLocation, String inId, String inLeague, String inLagett, String inLagtvo, String inDate,
+                      String inImageone, String inImagetwo,  int inLagettpoints, int inLagtvopoints) {
         location = inLocation;
-        id = inId;
+        ID = inId;
         league = inLeague;
         lagett = inLagett;
-        lagtvå = inLagtvå;
-        lagettpoints = inLagettpoints;
-        lagtvåpoints = inlagtvåpoints;
+        lagtvo = inLagtvo;
         date = inDate;
+        imageone = inImageone;
+        imagetwo = inImagetwo;
+        lagettpoints = inLagettpoints;
+        lagtvopoints = inLagtvopoints;
     }
 
     public Scorepoint(String inLocation) {
         location = inLocation;
-        id = "";
+        ID = "";
         league = "";
         lagett = "";
-        lagtvå = "";
-        lagettpoints =-1;
-        lagtvåpoints =-1;
+        lagtvo = "";
         date = "";
+        imageone = "";
+        imagetwo = "";
+        lagettpoints = -1;
+        lagtvopoints = -1;
     }
 
     public String toString() {
@@ -39,61 +48,67 @@ public class Scorepoint {
 
     public String info() {
         String str = location;
-        str += "location is";
-        str += id;
-        str += "id is";
+        str += " games id";
+        str += ID;
+        str += " games league";
         str += league;
-        str += "league is";
+        str += " lagett plays";
         str += lagett;
-        str += "lagett is";
-        str += lagtvå;
-        str += "lagtvå is";
+        str += " lagtvå plays";
+        str += lagtvo;
+        str += " games date";
         str += date;
-        str += "date is";
+        str += "imageone";
+        str += imageone;
+        str += "imagetwo";
+        str += imagetwo;
+        str += " points of team one";
         str += Integer.toString(lagettpoints);
-        str += "score one is";
-        str += Integer.toString(lagtvåpoints);
-        str += "score two is";
+        str += "m.";
+        str += " points of team two";
+        str += Integer.toString(lagtvopoints);
+        str += "m.";
         return str;
     }
 
+    public void setScoreOne(int newscore) {
+        lagettpoints = newscore;
+    }
+
+    public void setScoretwo(int newscore) {
+        lagettpoints = newscore;
+    }
+
+    public String getLocation() {
+        return location;
+    }
 
     public String getId() {
-        return id;
+        return ID;
     }
 
     public String getLeague() {
         return league;
     }
-
     public String getLagett() {
         return lagett;
     }
-
     public String getLagtvå() {
-        return lagtvå;
+        return lagtvo;
     }
-
-    public void setPointOne(int newPointOne) {
-        lagettpoints = newPointOne;
-    }
-    public void setPointTwo(int newPointTwo) {
-        lagtvåpoints = newPointTwo;
-    }
-
-    public int getLagettpoints(){
-        return lagettpoints;
-    }
-
-    public int getLagtvåpoints(){
-        return lagtvåpoints;
-    }
-    public String getLocation() {
-        return location;
-    }
-
     public String getDate() {
         return date;
+    }
+    public String getImageone() {
+        return imageone;
+    }
+    public String getImagetwo() { return imagetwo; }
+
+    public int getLagettpoints() {
+        return lagettpoints;
+    }
+    public int getLagtvåpoints() {
+        return lagtvopoints;
     }
 
 }

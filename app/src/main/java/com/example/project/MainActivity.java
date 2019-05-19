@@ -30,14 +30,16 @@ import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
 
-    private String[] mountainNames = {"Matterhorn","Mont Blanc","Denali"};
-    private String[] mountainLocations = {"Alps","Alps","Alaska"};
-    private int[] mountainHeights ={4478,4808,6190};
-
-    private ArrayList<String> ListData= new ArrayList<>(Arrays.asList(mountainNames));
-
-    private ArrayList<Scorepoint> pointing = new ArrayList<>();
+    private ArrayList<Scorepoint> match = new ArrayList<>();
     private ArrayAdapter<String> adapter;
+
+
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,43 +53,58 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setLogo(R.drawable.ic_action_name);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
 
-        ArrayAdapter<String> adapter=new ArrayAdapter<String>(this,
+        adapter = new ArrayAdapter<String>(
+                getApplicationContext(),
                 R.layout.list_item_text,
-                R.id.list_item_text,ListData);
+                R.id.list_item_textview);
 
-        ListView my_listview=(ListView) findViewById(R.id.my_listview);
+        ListView my_listview = (ListView) findViewById(R.id.my_listview);
         my_listview.setAdapter(adapter);
 
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        my_listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+            public void onItemClick(AdapterView<?> AdapterView, View view, int i, long l) {
+
+                Intent intent = new Intent(MainActivity.this, Scoredetails.class);
+                intent.putExtra("location", match.get(i).getLocation());
+                intent.putExtra("id", match.get(i).getId());
+                intent.putExtra("league", match.get(i).getLeague());
+                intent.putExtra("lagett", match.get(i).getLagett());
+                intent.putExtra("lagtvå", match.get(i).getLagtvå());
+                intent.putExtra("date", match.get(i).getDate());
+                intent.putExtra("imageone", match.get(i).getImageone());
+                intent.putExtra("imagetwo", match.get(i).getImagetwo());
+                intent.putExtra("lagettpoints", match.get(i).getLagettpoints());
+                intent.putExtra("lagtvåpoints", match.get(i).getLagtvåpoints());
+                startActivity(intent);
             }
         });
+
         new FetchData().execute();
+
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
+
+    public boolean onCreateOptionsMenu(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.action_settings) {
+            adapter.clear();
+            new FetchData().execute();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            adapter.clear();
+            new FetchData().execute();
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -165,21 +182,30 @@ public class MainActivity extends AppCompatActivity {
                 JSONArray json1 = new JSONArray(o);
 
                 for (int i = 0; i < json1.length(); i++) {
-                    adapter.add(json1.getJSONObject(i).getString("name"));
-                    pointing.add(new Scorepoint(
-                            json1.getJSONObject(i).getString("league")
+                    adapter.add(json1.getJSONObject(i).getString("ID"));
+                    match.add(new Scorepoint(
+                            json1.getJSONObject(i).getString("location"),
+                            json1.getJSONObject(i).getString("ID"),
+                            json1.getJSONObject(i).getString("league"),
+                            json1.getJSONObject(i).getString("lagett"),
+                            json1.getJSONObject(i).getString("lagtvo"),
+                            json1.getJSONObject(i).getString("date"),
+                            json1.getJSONObject(i).getString("imageone"),
+                            json1.getJSONObject(i).getString("imagetwo"),
+                            json1.getJSONObject(i).getInt("lagettpoints"),
+                            json1.getJSONObject(i).getInt("lagtvopoints")
                     ));
 
                 }
 
-                Log.d("PetersDebug", json1.toString());
-                Log.d("PetersDebug", json1.getJSONObject(0).getString("ID"));
 
             } catch (JSONException e) {
                 Log.e("brom", "E:" + e.getMessage());
             }
 
         }
+
     }
+
 
 }
